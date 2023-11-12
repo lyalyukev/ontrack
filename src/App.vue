@@ -3,7 +3,7 @@
 import TheHeader from './components/TheHeader.vue'
 import TheNav from './components/TheNav.vue'
 
-import {computed, ref} from "vue";
+import {computed, provide, ref} from "vue";
 
 import {
   generateTimelineItems,
@@ -28,11 +28,13 @@ const timelineItems = ref(generateTimelineItems(activities.value))
 
 const activitySelectOptions = computed(() => generateActivitySelectOptions(activities.value))
 
+provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
+
 function goTo(page) {
-  if(currentPage.value === PAGE_TIME && page === PAGE_TIME){
-     timeline.value.scrollToHour()
+  if (currentPage.value === PAGE_TIME && page === PAGE_TIME) {
+    timeline.value.scrollToHour()
   }
-  if(page !== PAGE_TIME) {
+  if (page !== PAGE_TIME) {
     document.body.scrollIntoView()
   }
   currentPage.value = page
@@ -56,12 +58,12 @@ function setTimelineItemActivity(timelineItem, activity) {
   timelineItem.activityId = activity.id
 }
 
-function setActivitySecondsToComplete(activity, secondsToComplete){
+function setActivitySecondsToComplete(activity, secondsToComplete) {
   activity.secondsToComplete = secondsToComplete
 }
 
-function updateTimelineActivitySeconds(timelineItem, activitySeconds){
-timelineItem.activitySeconds += activitySeconds
+function updateTimelineItemActivitySeconds(timelineItem, activitySeconds) {
+  timelineItem.activitySeconds += activitySeconds
 }
 
 </script>
@@ -76,7 +78,6 @@ timelineItem.activitySeconds += activitySeconds
                  @set-timeline-item-activity="setTimelineItemActivity"
                  :current-page="currentPage"
                  ref="timeline"
-                 @update-timeline-activity-seconds="updateTimelineActivitySeconds"
                  v-show="currentPage === PAGE_TIME"/>
 
     <TheActivities v-show="currentPage === PAGE_ACTIVITIES"

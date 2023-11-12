@@ -55,7 +55,6 @@ function findActivityById(id) {
         :placeholder="'Rest'"
         :selected="timelineItem.activityId"
         @select="selectActivity"/>
-    <TimelineStopWatch :seconds="timelineItem.activitySeconds" :hour="timelineItem.hour"
-                       @update-seconds="emit('updateActivitySeconds', $event)"/>
+    <TimelineStopWatch :timeline-item="timelineItem"/>
   </li>
 </template>
