@@ -1,14 +1,21 @@
 <script setup>
-import {formatSecond} from "@/function";
-import {isActivityValid} from "@/validators";
+import {formatSecond, getTotalActivitySeconds} from "@/function";
+import {isActivityValid, validateTimelineItems} from "@/validators";
 
-defineProps({
+const props = defineProps({
   activity: {
     required: true,
     type: Object,
     validator: isActivityValid
+  },
+  timelineItems: {
+    required: true,
+    type: Array,
+    validator: validateTimelineItems
   }
 })
+
+const seconds = formatSecond(getTotalActivitySeconds(props.activity, props.timelineItems) - props.activity.secondsToComplete)
 
 </script>
 
