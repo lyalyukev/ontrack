@@ -4,6 +4,7 @@ import {TrashIcon} from "@heroicons/vue/24/outline";
 import BaseSelect from '../components/BaseSelect.vue'
 import {PERIOD_SELECT_OPTIONS, BUTTON_TYPE_DANGER} from "@/constants"
 import {isActivityValid, isNumber, isUndefined} from "@/validators";
+import ActivitySecondsToComplete from '../components/ActivitySecondsToComplete.vue'
 
 defineProps({
   activity: {
@@ -29,14 +30,14 @@ const emit = defineEmits({
       <span class="truncate text-2xl">{{ activity.name }}</span>
     </div>
 
-    <div>
-      <BaseSelect class="font-mono"
+    <div class="flex gap-2">
+      <BaseSelect class="font-mono grow"
                   :selected="activity.secondsToComplete || null"
                   placeholder="hh:mm"
                   :options="PERIOD_SELECT_OPTIONS"
                   @select="emit('setSecondsToComplete', $event || 0)"/>
 
-      <div class="flex items-center rounded bg-purple-100 px-2">123 </div>
+      <ActivitySecondsToComplete v-if="activity.secondsToComplete" :activity="activity" />
     </div>
 
 
