@@ -2,7 +2,7 @@
 import BaseSelect from "../components/BaseSelect.vue"
 import TimelineHour from '../components/TimelineHour.vue'
 import {
-  isActivityValid, isHourValid,
+  isActivityValid, isHourValid, isNumber,
   isTimelineItemValid,
   validateActivities,
   validatorSelectOption
@@ -30,7 +30,8 @@ const props = defineProps({
 
 const emit = defineEmits({
   selectActivity: isActivityValid,
-  scrollToHour: isHourValid
+  scrollToHour: isHourValid,
+  updateActivitySeconds: isNumber
 })
 
 function selectActivity(id) {
@@ -47,13 +48,14 @@ function findActivityById(id) {
   <li
       class="relative flex flex-col gap-2 border-t border-gray-200 py-10 px-4">
 
-    <TimelineHour :hour="timelineItem.hour" @click.prevent="emit('scrollToHour', timelineItem.hour)" />
+    <TimelineHour :hour="timelineItem.hour" @click.prevent="emit('scrollToHour', timelineItem.hour)"/>
 
     <BaseSelect
         :options="activitySelectOptions"
         :placeholder="'Rest'"
         :selected="timelineItem.activityId"
         @select="selectActivity"/>
-<TimelineStopWatch :seconds="timelineItem.activitySeconds" :hour="timelineItem.hour" />
+    <TimelineStopWatch :seconds="timelineItem.activitySeconds" :hour="timelineItem.hour"
+                       @update-seconds="emit('updateActivitySeconds', $event)"/>
   </li>
 </template>
