@@ -30,9 +30,9 @@ const activitySelectOptions = computed(() => generateActivitySelectOptions(activ
 
 provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
 provide('timelineItems', timelineItems.value)
-provide('activities', activities.value)
 provide('activitySelectOptions', activitySelectOptions.value)
 provide('PeriodSelectOptions', generatePeriodSelectOptions())
+provide('setTimelineItemActivity', setTimelineItemActivity)
 
 
 function goTo(page) {
@@ -59,8 +59,8 @@ function createActivity(activity) {
   activities.value.push(activity)
 }
 
-function setTimelineItemActivity(timelineItem, activity) {
-  timelineItem.activityId = activity.id
+function setTimelineItemActivity(timelineItem, activityId) {
+  timelineItem.activityId = activityId
 }
 
 function setActivitySecondsToComplete(activity, secondsToComplete) {
@@ -78,7 +78,6 @@ function updateTimelineItemActivitySeconds(timelineItem, activitySeconds) {
 
   <main class="flex flex-grow flex-col">
     <TheTimeLine :timeline-items="timelineItems"
-                 @set-timeline-item-activity="setTimelineItemActivity"
                  :current-page="currentPage"
                  ref="timeline"
                  v-show="currentPage === PAGE_TIME"/>

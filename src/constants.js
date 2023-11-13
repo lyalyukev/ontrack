@@ -19,9 +19,6 @@ export const SECONDS_IN_MINUTES = 60
 export const MINUTES_IN_HOUR = 60
 export const MILLISECOND_IN_SECOND = 1000
 
-export const NULLABLE_ACTIVITY = { id: null }
-
-
 export const BUTTON_TYPE_PRIMARY = 'primary'
 export const BUTTON_TYPE_NEUTRAL = 'neutral'
 export const BUTTON_TYPE_DANGER = 'danger'
