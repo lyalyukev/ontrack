@@ -9,7 +9,7 @@ import {inject} from "vue";
 
 const PeriodSelectOptions = inject('PeriodSelectOptions')
 const setActivitySecondsToComplete = inject('setActivitySecondsToComplete')
-
+const deleteActivity = inject('deleteActivity')
 defineProps({
   activity: {
     required: true,
@@ -17,17 +17,13 @@ defineProps({
     validator: isActivityValid
   }
 })
-const emit = defineEmits({
-  delete: isUndefined,
-})
-
 
 </script>
 
 <template>
   <li class="flex flex-col gap-2 p-4">
     <div class="flex items-center gap-2">
-      <BaseButton :type="BUTTON_TYPE_DANGER" @click="emit('delete')">
+      <BaseButton :type="BUTTON_TYPE_DANGER" @click="deleteActivity(activity)">
         <TrashIcon class="h-8"/>
       </BaseButton>
       <span class="truncate text-2xl">{{ activity.name }}</span>
@@ -38,10 +34,10 @@ const emit = defineEmits({
                   :selected="activity.secondsToComplete || null"
                   placeholder="hh:mm"
                   :options="PeriodSelectOptions"
-      @select="setActivitySecondsToComplete(activity, $event)"
+                  @select="setActivitySecondsToComplete(activity, $event)"
       />
 
-      <ActivitySecondsToComplete v-if="activity.secondsToComplete" :activity="activity" />
+      <ActivitySecondsToComplete v-if="activity.secondsToComplete" :activity="activity"/>
     </div>
 
 

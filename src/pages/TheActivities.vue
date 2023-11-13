@@ -13,9 +13,7 @@ defineProps({
     validator: validateActivities
   }
 })
-const emit = defineEmits({
-  deleteActivity: isActivityValid
-})
+
 
 
 </script>
@@ -25,7 +23,7 @@ const emit = defineEmits({
       <ActivityItem v-for="activity in activities"
                     :key="activity.id"
                     :activity="activity"
-                    @delete="emit('deleteActivity', activity)"/>
+                    />
     </ul>
 
     <TheActivitiesEmptyState v-else/>

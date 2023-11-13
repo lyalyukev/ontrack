@@ -35,6 +35,7 @@ provide('PeriodSelectOptions', generatePeriodSelectOptions())
 provide('setTimelineItemActivity', setTimelineItemActivity)
 provide('setActivitySecondsToComplete', setActivitySecondsToComplete)
 provide('createActivity', createActivity)
+provide('deleteActivity', deleteActivity)
 
 function goTo(page) {
   if (currentPage.value === PAGE_TIME && page === PAGE_TIME) {
@@ -85,7 +86,6 @@ function updateTimelineItemActivitySeconds(timelineItem, activitySeconds) {
 
     <TheActivities v-show="currentPage === PAGE_ACTIVITIES"
                    :activities="activities"
-                   @delete-activity="deleteActivity"
     />
     <TheProgress v-show="currentPage === PAGE_PROGRESS"/>
   </main>
