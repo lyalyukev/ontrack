@@ -8,6 +8,7 @@ import ActivitySecondsToComplete from '../components/ActivitySecondsToComplete.v
 import {inject} from "vue";
 
 const PeriodSelectOptions = inject('PeriodSelectOptions')
+const setActivitySecondsToComplete = inject('setActivitySecondsToComplete')
 
 defineProps({
   activity: {
@@ -18,7 +19,6 @@ defineProps({
 })
 const emit = defineEmits({
   delete: isUndefined,
-  setSecondsToComplete: isNumber
 })
 
 
@@ -38,7 +38,8 @@ const emit = defineEmits({
                   :selected="activity.secondsToComplete || null"
                   placeholder="hh:mm"
                   :options="PeriodSelectOptions"
-                  @select="emit('setSecondsToComplete', $event || 0)"/>
+      @select="setActivitySecondsToComplete(activity, $event)"
+      />
 
       <ActivitySecondsToComplete v-if="activity.secondsToComplete" :activity="activity" />
     </div>

@@ -36,7 +36,7 @@ const emit = defineEmits({
         :options="activitySelectOptions"
         :placeholder="'Rest'"
         :selected="timelineItem.activityId"
-        @select="setTimelineItemActivity(timelineItem, $event)"/>
+        @select="setTimelineItemActivity(timelineItem, $event || 0)"/>
     <TimelineStopWatch :timeline-item="timelineItem"/>
   </li>
 </template>

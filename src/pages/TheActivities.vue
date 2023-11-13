@@ -15,18 +15,9 @@ defineProps({
 })
 const emit = defineEmits({
   deleteActivity: isActivityValid,
-  createActivity: isActivityValid,
-  setActivitySecondsToComplete(activity, secondsToComplete){
-    return[
-        isActivityValid(activity),
-        isNumber(secondsToComplete)
-    ].every(Boolean)
-  }
+  createActivity: isActivityValid
 })
 
-function setSecondsToComplete(activity, secondsToComplete) {
-  emit('setActivitySecondsToComplete', activity, secondsToComplete)
-}
 
 </script>
 <template>
@@ -35,8 +26,7 @@ function setSecondsToComplete(activity, secondsToComplete) {
       <ActivityItem v-for="activity in activities"
                     :key="activity.id"
                     :activity="activity"
-                    @delete="emit('deleteActivity', activity)"
-                    @set-seconds-to-complete="setSecondsToComplete(activity, $event)"/>
+                    @delete="emit('deleteActivity', activity)"/>
     </ul>
 
     <TheActivitiesEmptyState v-else/>
