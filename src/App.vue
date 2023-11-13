@@ -17,7 +17,7 @@ import TheProgress from './pages/TheProgress.vue'
 
 import {PAGE_TIME, PAGE_ACTIVITIES, PAGE_PROGRESS} from "@/constants";
 
-import {currentPage, navigate, timelineRef} from "@/router";
+import {currentPage, timelineRef} from "@/router";
 
 
 const activities = ref(generateActivities())
@@ -66,11 +66,10 @@ function updateTimelineItemActivitySeconds(timelineItem, activitySeconds) {
 </script>
 
 <template>
-  <TheHeader @navigate="navigate"/>
+  <TheHeader />
 
   <main class="flex flex-grow flex-col">
     <TheTimeLine :timeline-items="timelineItems"
-                 :current-page="currentPage"
                  ref="timelineRef"
                  v-show="currentPage === PAGE_TIME"/>
 
@@ -80,6 +79,6 @@ function updateTimelineItemActivitySeconds(timelineItem, activitySeconds) {
     <TheProgress v-show="currentPage === PAGE_PROGRESS"/>
   </main>
 
-  <TheNav :current-page="currentPage" @navigate="navigate"/>
+  <TheNav />
 </template>
 
