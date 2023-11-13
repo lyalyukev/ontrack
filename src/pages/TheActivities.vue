@@ -1,7 +1,7 @@
 <script setup>
 
 import ActivityItem from '../components/ActivityItem.vue'
-import {isActivityValid, isNumber, validateActivities} from "@/validators";
+import {isActivityValid, validateActivities} from "@/validators";
 import TheActivityForm from '../components/TheActivityForm.vue'
 import TheActivitiesEmptyState from "@/components/TheActivitiesEmptyState.vue";
 
@@ -14,8 +14,7 @@ defineProps({
   }
 })
 const emit = defineEmits({
-  deleteActivity: isActivityValid,
-  createActivity: isActivityValid
+  deleteActivity: isActivityValid
 })
 
 
@@ -31,6 +30,6 @@ const emit = defineEmits({
 
     <TheActivitiesEmptyState v-else/>
 
-    <TheActivityForm @submit="emit('createActivity', $event)"/>
+    <TheActivityForm />
   </div>
 </template>

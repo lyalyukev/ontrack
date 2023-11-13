@@ -1,17 +1,15 @@
 <script setup>
 import BaseButton from '../components/BaseButton.vue'
 import {PlusIcon} from "@heroicons/vue/24/outline"
-import {nextTick, ref} from "vue";
-import {isActivityValid} from "@/validators";
+import {inject, nextTick, ref} from "vue";
 import {id} from "@/function";
 
 const name = ref('')
-const emit = defineEmits({
-  submit: isActivityValid
-})
+
+const createActivity = inject('createActivity')
 
 async function submit() {
-  emit('submit', {
+  createActivity({
     id: id(),
     name: name.value,
     secondsToComplete: 0
