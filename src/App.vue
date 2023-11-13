@@ -30,6 +30,8 @@ const activitySelectOptions = computed(() => generateActivitySelectOptions(activ
 
 provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
 provide('timelineItems', timelineItems.value)
+provide('activities', activities.value)
+provide('activitySelectOptions', activitySelectOptions.value)
 
 function goTo(page) {
   if (currentPage.value === PAGE_TIME && page === PAGE_TIME) {
@@ -74,8 +76,6 @@ function updateTimelineItemActivitySeconds(timelineItem, activitySeconds) {
 
   <main class="flex flex-grow flex-col">
     <TheTimeLine :timeline-items="timelineItems"
-                 :activity-select-options="activitySelectOptions"
-                 :activities="activities"
                  @set-timeline-item-activity="setTimelineItemActivity"
                  :current-page="currentPage"
                  ref="timeline"
