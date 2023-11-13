@@ -12,9 +12,9 @@ import {navigate, currentPage} from "@/router"
     <ul class="flex items-center justify-around border-t">
       <NavItem
           v-for="icon, page in NAV_ITEMS"
-          :href="`#${page}`" :key="page"
-          :class=" {'bg-gray-200 pointer-events-none' : currentPage === page}"
-          @click="navigate(page)">
+          :key="page"
+          :page="page"
+          >
 
         <component :is="icon" class="h-6 w-6"/>
 

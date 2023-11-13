@@ -1,17 +1,31 @@
-<script>
-export default {
-  inheritAttrs: false
-}
+<script setup>
+import {navigate, currentPage} from "@/router";
+import {isPageValid} from "@/validators";
+import {computed} from "vue";
+
+const classes = computed(() => [
+  'flex flex-col items-center p-2 text-xs capitalize',
+  {'bg-gray-200 pointer-events-none': currentPage.value === props.page}
+])
+
+const props = defineProps({
+  page: {
+    required: true,
+    type: String,
+    validator: isPageValid
+  }
+})
+
 </script>
 
 <template>
-  <li  class="flex-1">
+  <li class="flex-1">
 
-    <a v-bind="$.attrs" class="flex flex-col items-center p-2 text-xs capitalize">
+    <a :href="`#${page}`" :class="classes" @click="navigate(props.page)">
 
       <slot></slot>
 
-   </a>
+    </a>
 
   </li>
 </template>
