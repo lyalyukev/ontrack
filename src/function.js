@@ -5,15 +5,6 @@ import {
 import {isPageValid, isNull} from "@/validators";
 
 
-export function normalizePageHash() {
-    const hash = window.location.hash.slice(1)
-    if (isPageValid(hash)) {
-        return hash
-    }
-    window.location.hash = PAGE_TIME
-    return PAGE_TIME
-}
-
 export function generateTimelineItems(activities) {
 
     return [...Array(HOUR_IN_DAY).keys()].map((hour) => ({

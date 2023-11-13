@@ -21,14 +21,12 @@ const timelineItemsRef = ref([])
 
 function scrollToHour(hour = null, isSmooth = true) {
 
-  hour??= new Date().getHours()
-  const options = {behavior: isSmooth ? 'smooth': 'instant'}
+  hour ??= new Date().getHours()
 
-  if (hour !== MIDNIGHT_HOUR) {
-    timelineItemsRef.value[hour - 1].$el.scrollIntoView(options)
-  } else {
-    document.body.scrollIntoView(options)
-  }
+  const el = hour === MIDNIGHT_HOUR ? document.body : timelineItemsRef.value[hour - 1].$el
+
+  el.scrollIntoView({behavior: isSmooth ? 'smooth' : 'instant'})
+
 }
 
 watchPostEffect(async () => {
