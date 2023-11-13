@@ -9,7 +9,7 @@ import {
   generateTimelineItems,
   normalizePageHash,
   generateActivitySelectOptions,
-  generateActivities,
+  generateActivities, generatePeriodSelectOptions,
 } from "@/function";
 
 import TheTimeLine from './pages/TheTimeLine.vue'
@@ -32,6 +32,8 @@ provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
 provide('timelineItems', timelineItems.value)
 provide('activities', activities.value)
 provide('activitySelectOptions', activitySelectOptions.value)
+provide('PeriodSelectOptions', generatePeriodSelectOptions())
+
 
 function goTo(page) {
   if (currentPage.value === PAGE_TIME && page === PAGE_TIME) {
