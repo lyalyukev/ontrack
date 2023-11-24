@@ -81,3 +81,6 @@ export function isHourValid(hour) {
 export function isSelectValueValid(value){
     return isNotEmptyString(value) || isNumber(value) || isNull(value)
 }
+export function isNavItemValid(){
+    return true
+}

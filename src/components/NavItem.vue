@@ -1,6 +1,6 @@
 <script setup>
 import {navigate, currentPage} from "@/router";
-import {isPageValid} from "@/validators";
+import {isNavItemValid, isPageValid} from "@/validators";
 import {computed} from "vue";
 
 const classes = computed(() => [
@@ -9,10 +9,10 @@ const classes = computed(() => [
 ])
 
 const props = defineProps({
-  page: {
+  navItem: {
     required: true,
-    type: String,
-    validator: isPageValid
+    type: Object,
+    validator: isNavItemValid
   }
 })
 
@@ -21,9 +21,11 @@ const props = defineProps({
 <template>
   <li class="flex-1">
 
-    <a :href="`#${page}`" :class="classes" @click="navigate(props.page)">
+    <a :href="`#${navItem.page}`" :class="classes" @click="navigate(navItem.page)">
 
-      <slot></slot>
+      <component :is="navItem.icon" class="h-6 w-6"/>
+
+      {{ navItem.page }}
 
     </a>
 
